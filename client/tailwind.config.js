@@ -7,7 +7,10 @@ module.exports = {
     extend: {
       colors:{
         'navblue':'#0C3C60',
-      }
+      },
+      spacing: {
+        '1/6': '16.666667%',
+      },
     },
   },
   plugins: [],

@@ -28,7 +28,7 @@ const Navbar = () => {
        const [nav,setnav]=useState(false);
   return (
     <div>
-        <nav className="bg-navblue text-white w-full px-2 h-20 flex flex-row justify-between items-center fixed z-0">
+        <nav className="bg-navblue text-white w-full px-2 h-20 flex flex-row justify-between items-center fixed z-10">
             <div className='flex flex-row items-center'>
                 <div className='cursor-pointer'>
                     <img src={logo} alt="EmpowerYouth" width="75"/>
@@ -62,7 +62,7 @@ const Navbar = () => {
         </nav>
 
         {nav&&(
-            <div className='md:hidden bg-navblue text-white h-screen w-full flex flex-col align-middle pt-24 z-10'>
+            <div className='md:hidden bg-navblue text-white h-screen w-full flex flex-col align-middle pt-24'>
                 {/* <div className='flex flex-row justify-center align-center py-3'> */}
                     <div className='cursor-pointer flex flex-row gap-3 justify-center pb-5'>
                         <FaUserCircle size="20"/>
