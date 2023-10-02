@@ -1,5 +1,7 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {BsArrowRight} from 'react-icons/bs';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Sectors = () => {
   const sectors = [
@@ -19,12 +21,18 @@ const Sectors = () => {
         link: "#",
     }
   ]
+
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+
   return (
     <section className='mt-10 px-20 sm:mt-20 md:mt-24 lg:mt-32 mb-20'>
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5'>
         {sectors.map((sector) => (
-            <div className='bg-white sm:p-1 md:p-6 lg:p-6 text-center'>
-                <h1 className='font-semibold uppercase text-xl md:text-3xl lg:text-3xl mb-10 mt-10'>{sector.title}</h1>
+            <div className='bg-white sm:p-1 md:p-6 lg:p-6 text-center' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <h1 className='font-semibold text-navblue uppercase text-xl md:text-3xl lg:text-3xl mb-10 mt-10'>{sector.title}</h1>
                 <p className='text-base text-justify mb-10'>{sector.description}</p>
                 <a
                   href={sector.link}

@@ -11,6 +11,9 @@ module.exports = {
       spacing: {
         '1/6': '16.666667%',
       },
+      backgroundImage:{
+        'bg1':'url("https://www.analyticsinsight.net/wp-content/uploads/2017/08/Contri.png")',
+      }
     },
   },
   plugins: [],
