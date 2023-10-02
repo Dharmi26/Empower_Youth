@@ -2,7 +2,7 @@ import React from 'react'
 import HeroImg from '../assets/HeroImg.jpg'
 const Hero = () => {
   return (
-    <div className='relative z-0 mb-36'>
+    <div className='relative z-0'>
       <div className='w-full'>
         <img src={HeroImg} className='w-full'/>
       </div>
