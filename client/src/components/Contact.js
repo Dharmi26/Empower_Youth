@@ -19,7 +19,7 @@ const Contact = () => {
     >
       <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">
         <div className="pb-20">
-          <p className="text-white text-center text-4xl font-semibold uppercase">
+          <p data-aos="fade-up-zoom-in" data-aos-duration="1000" data-aos-delay="100" className="text-white text-center text-4xl font-semibold uppercase">
             Contact
           </p>
           {/* <p className="py-6 flex flex-row justify-center items-center gap-2 text-2xl"><MdOutlineContactMail/>Let's Get Connected !</p> */}
@@ -28,7 +28,7 @@ const Contact = () => {
 
           {/* <div data-aos="zoom-in-up" data-aos-delay="200" className="w-[60%] md:w-[40%]"><img src={connect}/></div> */}
 
-          <div data-aos="zoom-in-up" data-aos-delay="500" className="w-full flex justify-center items-center">
+          <div data-aos="fade-up-zoom-in" data-aos-delay="500" className="w-full flex justify-center items-center">
           <form
             action="https://getform.io/f/4682ebcf-5ccf-4f89-8d9c-5eb230f79e03"
             method="POST"
