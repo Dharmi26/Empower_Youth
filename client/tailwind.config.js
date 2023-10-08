@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors:{
         'navblue':'#0C3C60',
+        'darkblue':'#072136',
       },
       spacing: {
         '1/6': '16.666667%',

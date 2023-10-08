@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../assets/logo.jpg';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {BiSearch} from 'react-icons/bi';
 import {FaUserCircle} from 'react-icons/fa';
 import {HiBars3} from 'react-icons/hi2';
