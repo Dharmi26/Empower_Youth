@@ -8,7 +8,7 @@ const About = () => {
         AOS.refresh();
       }, []);
   return (
-    <div className='min-h-screen bg-bg1 bg-fixed'>
+    <div name="About" className='min-h-screen bg-bg1 bg-fixed'>
         <div className='bg-blue-100 bg-opacity-50 h-full flex flex-col gap-10 justify-center items-center px-6 py-12 sm:px-12 md:px-36 lg:px-48 sm:py-20 md:py-24 lg:py-28'>
             <h1 data-aos="fade-up-zoom-in" data-aos-duration="1000" data-aos-delay="100" className='text-navblue text-4xl font-semibold uppercase'>About</h1>
             <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" className='text-lg text-justify text-navblue'>

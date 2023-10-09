@@ -41,7 +41,7 @@ function Team() {
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen py-12 sm:py-20 md:py-24 lg:py-28">
+    <div name="Team" className="bg-gray-100 min-h-screen py-12 sm:py-20 md:py-24 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative">
         <h2 data-aos="fade-up-zoom-in" data-aos-duration="1000" data-aos-delay="100" className="text-navblue text-4xl font-semibold text-center uppercase mb-12">Our Team</h2>
         <div className="relative flex items-center justify-center">

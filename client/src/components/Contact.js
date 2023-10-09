@@ -14,7 +14,7 @@ const Contact = () => {
 
   return (
     <div
-      name="contact"
+      name="Contact"
       className="w-full pt-40 bg-navblue p-4 text-white"
     >
       <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">

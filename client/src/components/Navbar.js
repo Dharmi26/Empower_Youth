@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logo from '../assets/logo.jpg';
-// import { Link } from 'react-router-dom';
+import { Link as scrollLink } from 'react-scroll';
+import {Link} from 'react-router-dom';
 import {BiSearch} from 'react-icons/bi';
 import {FaUserCircle} from 'react-icons/fa';
 import {HiBars3} from 'react-icons/hi2';
@@ -10,7 +11,7 @@ const Navbar = () => {
     const links = [
         {
             id:1,
-            link:"Home",
+            link:"Sectors",
         },
         {
             id:2,
@@ -18,20 +19,31 @@ const Navbar = () => {
         },
         {
             id:3,
-            link:"Team",
+            link:"Clients",
         },
         {
             id:4,
+            link:"Team",
+        },
+        {
+            id:5,
             link:"Contact",
         },
        ];
+
+       const goTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
        const [nav,setnav]=useState(false);
   return (
     <div>
         <nav className="bg-navblue text-white w-full px-2 h-20 flex flex-row justify-between items-center fixed z-10">
             <div className='flex flex-row items-center'>
                 <div className='cursor-pointer'>
-                    <img src={logo} alt="EmpowerYouth" width="75"/>
+                    <div onClick={goTop}><img src={logo} alt="EmpowerYouth" width="75"/></div>
                 </div>
                 <ul className='hidden md:flex'>
                     {links.map((link)=>(
@@ -39,7 +51,7 @@ const Navbar = () => {
                         key={link.id} 
                         className='px-4 cursor-pointer capitalize'
                         >
-                        <a href="#" smooth duration={500}>{link.link}</a>
+                        <scrollLink to={link.link} smooth duration={500}>{link.link}</scrollLink>
                         </li>
                     ))}
                 </ul>       
@@ -53,7 +65,7 @@ const Navbar = () => {
                     placeholder="Search"/>
                 </div>
                 <div className='hidden md:flex cursor-pointer'>
-                    <FaUserCircle size="35"/>
+                <Link to='/login'><FaUserCircle size="35"/></Link>
                 </div>
                 <div className='md:hidden cursor-pointer' onClick={()=>setnav(!nav)}>
                     {nav?(<RxCross1 size="30"/>):(<HiBars3 size="35"/>)}
@@ -65,8 +77,8 @@ const Navbar = () => {
             <div className='md:hidden bg-navblue text-white h-screen w-full flex flex-col align-middle pt-24'>
                 {/* <div className='flex flex-row justify-center align-center py-3'> */}
                     <div className='cursor-pointer flex flex-row gap-3 justify-center pb-5'>
-                        <FaUserCircle size="20"/>
-                        <p>Login</p>
+                    <Link to='/login'><FaUserCircle size="20"/>
+                        <p>Login</p></Link>
                     </div>
                     <hr/>
                 {/* </div>  */}
@@ -77,7 +89,7 @@ const Navbar = () => {
                                 key={link.id} 
                                 className='px-4 cursor-pointer capitalize'
                                 >
-                                <a href="#" smooth duration={500}>{link.link}</a>
+                                <scrollLink to={link.link} smooth duration={500}>{link.link}</scrollLink>
                                 </li>
                             ))}
                     </ul>

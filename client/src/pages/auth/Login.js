@@ -1,15 +1,16 @@
 import React from 'react'
 import logo from '../../assets/logo.jpg'
+import {Link} from 'react-router-dom'
 
 const Login = () => {
   return (
     <div>
         <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+            <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             <img className="w-8 h-8 mr-2 text-navblue" src={logo} alt="logo" />
             EmpowerYouth    
-            </a>
+            </Link>
             <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-xl font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -37,7 +38,7 @@ const Login = () => {
                 </div>
                 <button type="submit" className="w-full  text-white bg-navblue hover:bg-white hover:text-navblue outline outline-1 outline-navblue font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                    Don’t have an account yet? <a href="#" className="font-medium text-navblue hover:underline">Sign up</a>
+                    Don’t have an account yet? <Link to="/register" className="font-medium text-navblue hover:underline">Sign up</Link>
                 </p>
                 </form>
             </div>

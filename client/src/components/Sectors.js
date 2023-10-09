@@ -28,7 +28,7 @@ const Sectors = () => {
   }, []);
 
   return (
-    <section className='mt-10 px-20 sm:mt-20 md:mt-24 lg:mt-32 mb-20'>
+    <section name="Sectors" className='mt-10 px-20 sm:mt-20 md:mt-24 lg:mt-32 mb-20'>
     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5'>
         {sectors.map((sector) => (
             <div className='bg-white sm:p-1 md:p-6 lg:p-6 text-center'>
