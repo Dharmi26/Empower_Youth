@@ -1,67 +1,56 @@
-const express = require("express");
-const bcrypt = require("bcrypt");
-const JWT = require("jsonwebtoken");
 const userModel = require("../Models/userModel");
+const generateToken = require("../Utils/generateToken");
 
 const registerController = async (req , res) => {
-	try {
-		const currentUser = await userModel.findOne({email : req.body.email});
-		if (!currentUser) {
-			return res.status(400).send({
-				success : false,
-				message : "User already registered"
-			})
-		}
-		const salt = await bcrypt.genSalt(10);
-		const hashedPassword = await bcrypt.hash(req.body.password , salt);
-		currentUser.password = hashedPassword;
-
-		const newUser = await new userModel.create(req.body);
-		await newUser.save();
+	const {name , email , contactNumber , password} = req.body;
+	const userExists = await userModel.findOne({email});
+	if (userExists) {
+		return res.status(400).send({
+			success : false,
+			message : "User already registered"
+		});
+	}
+	const newUser = await userModel.create({name , email , contactNumber , password});
+	if (newUser) {
 		return res.status(200).send({
 			success : true,
 			message : "User registered successfully",
-			user
+			name : newUser.name,
+			email : newUser.email,
+			contactNumber : newUser.contactNumber,
+			token : generateToken(newUser._id)
 		});
 	}
-	catch(error) {
+	else {
 		return res.status(500).send({
 			success : false,
-			message : "Something went wrong",
-			error
-		})
+			message : "Error in register API"
+		});
 	}
 };
 
 const loginController = async (req , res) => {
-	try {
-		const currentUser = await userMode.findOne({email : req.body.email});
-		if (!currentUser) {
-			return res.status(400).send({
-				success : false,
-				message : "User have'nt registered yet"
-			})
-		}
-		const isSame = await bcrypt.compare(req.body.password , currentUser.password);
-		if (!isSame) {
-			return res.status(400).send({
-				success : false,
-				message : "email or password mismatched"
-			})
-		}
-		const token = JWT.sign({userID : currentUser._id} , process.env.JWT_SECRET_KEY , {expiresIn : '2h'});
-		return res.status(200).send({
-			success : true,
-			message : "User logged in successfully",
-			token,
-			currentUser
+	const {email , password} = req.body;
+	const user = await userModel.findOne({email});
+	if (!user) {
+		return res.status(400).send({
+			success : false,
+			message : "email is not registered"
 		});
 	}
-	catch(error) {
-		return res.status(500).send({
+	else if (user && (await user.matchPassword(password))) {
+		return res.status(200).send({
 			success : true,
-			message : "Something went wrong",
-			error
+			message : "Login successfull",
+			name : user.name,
+			email : user.email,
+			token : generateToken(user._id)
+		});
+	}
+	else {
+		return res.status(400).send({
+			success : false,
+			message : "email or password are not matching"
 		})
 	}
 };
