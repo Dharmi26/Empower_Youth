@@ -41,7 +41,7 @@ const loginController = async (req , res) => {
 	else if (user && (await user.matchPassword(password))) {
 		return res.status(200).send({
 			success : true,
-			message : "Login successfull",
+			message : "login successfull",
 			name : user.name,
 			email : user.email,
 			token : generateToken(user._id)
