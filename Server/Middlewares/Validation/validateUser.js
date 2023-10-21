@@ -33,7 +33,7 @@ const registerValidation = [
 	.withMessage('email cannot be an empty field')
 	.normalizeEmail({gmail_remove_dots : false})
 	.isEmail()
-	.withMessage('email format is not right'),
+	.withMessage('must be a valid email format'),
 
 	check('password')
 	.trim()
@@ -64,7 +64,7 @@ const loginValidation = [
 	.withMessage('email is required')
 	.normalizeEmail({gmail_remove_dots : false})
 	.isEmail()
-	.withMessage('email format is not right'),
+	.withMessage('must be a valid email format'),
 
 	check('password')
 	.trim()
