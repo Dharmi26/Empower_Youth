@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -17,7 +18,7 @@ const About = () => {
             <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" className='text-lg text-justify text-navblue'>
                 To address this challenge, we propose "EmpowerYouth," a comprehensive digital solution aimed at bridging the information gap and empowering young individuals to make informed decisions about their career paths within the vocational sector. This platform will serve as a one-stop resource for all things related to vocational training and careers.
             </p>
-            <button data-aos="fade-up-zoom-in" data-aos-duration="1000" data-aos-delay="300" className='md:text-lg sm:text-xs cursor-pointer outline outline-1 outline-navblue p-1 mt-2 md:p-3 md:mt-3 lg:p-3 lg:mt-3 md:w-80 lg:w-80 sm:w-40 text-center hover:bg-navblue hover:text-white transition duration-300 ease-in-out transform hover:scale-105'>Learn More</button>
+            <Link to="/trainings"><button data-aos="fade-up-zoom-in" data-aos-duration="1000" data-aos-delay="300" className='md:text-lg sm:text-xs cursor-pointer outline outline-1 outline-navblue p-1 mt-2 md:p-3 md:mt-3 lg:p-3 lg:mt-3 md:w-80 lg:w-80 sm:w-40 text-center hover:bg-navblue hover:text-white transition duration-300 ease-in-out transform hover:scale-105'>Learn More</button></Link>
         </div>
     </div>
   );

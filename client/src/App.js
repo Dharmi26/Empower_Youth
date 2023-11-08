@@ -7,6 +7,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Government from "./pages/Government";
 import Private from "./pages/Private";
 import Entrepreneurship from "./pages/Entrepreneurship";
+import Footer from "./components/Footer";
+import AllTrainings from "./pages/AllTrainings";
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
         <Route path="/government" element={<Government />} />
         <Route path="/private" element={<Private />} />
         <Route path="/entrepreneurship" element={<Entrepreneurship />} />
+        <Route path="/trainings" element={<AllTrainings />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }

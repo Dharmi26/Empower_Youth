@@ -39,24 +39,21 @@ const Entrepreneurship = () => {
       trainingName: 'Training 1',
       trainingPeriod: '3 months',
       trainingCost: '$500',
-      trainingDescription: 'This is the description for Training 1.',
-      logoUrl: 'training1.jpg',
+      trainingPartner: 'Udemy'
     },
     {
       id: 2,
       trainingName: 'Training 2',
       trainingPeriod: '2 months',
       trainingCost: '$400',
-      trainingDescription: 'This is the description for Training 2.',
-      logoUrl: 'training2.jpg',
+      trainingPartner: 'Udemy'
     },
     {
       id: 3,
       trainingName: 'Training 3',
       trainingPeriod: '4 months',
       trainingCost: '$600',
-      trainingDescription: 'This is the description for Training 3.',
-      logoUrl: 'training3.jpg',
+      trainingPartner: 'Udemy'
     },
     // Add more training data as needed
   ]);
