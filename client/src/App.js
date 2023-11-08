@@ -4,6 +4,9 @@ import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ScrollToTop from "./components/ScrollToTop";
+import Government from "./pages/Government";
+import Private from "./pages/Private";
+import Entrepreneurship from "./pages/Entrepreneurship";
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/government" element={<Government />} />
+        <Route path="/private" element={<Private />} />
+        <Route path="/entrepreneurship" element={<Entrepreneurship />} />
       </Routes>
     </BrowserRouter>
   );

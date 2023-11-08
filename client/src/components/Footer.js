@@ -1,7 +1,8 @@
 import React from 'react';
 import {FaLinkedin} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
-import {Link} from 'react-scroll'
+import {Link as ScrollLink} from 'react-scroll'
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -19,14 +20,14 @@ const Footer = () => {
       <div className='md:w-1/3 mb-10'>
         <h1 className='uppercase text-xl mb-4 md:mb-10'>Menu</h1>
         <div className='font-light'>
-          <Link to="About" smooth duration={500}><p className='cursor-pointer'>About</p></Link>
-          <Link to="Sectors" smooth duration={500}><p className='cursor-pointer'>Sectors</p></Link>
-          <Link to="Sectors" smooth duration={500}><p className='cursor-pointer'>Government</p></Link>
-          <Link to="Sectors" smooth duration={500}><p className='cursor-pointer'>Private</p></Link>
-          <Link to="Sectors" smooth duration={500}><p className='cursor-pointer'>Entrepreneurship</p></Link>
-          <Link to="Clients" smooth duration={500}><p className='cursor-pointer'>Clients</p></Link>
-          <Link to="Team" smooth duration={500}><p className='cursor-pointer'>Team</p></Link>
-          <Link to="Contact" smooth duration={500}><p className='cursor-pointer'>Contact</p></Link>
+          <ScrollLink to="About" smooth duration={500}><p className='cursor-pointer'>About</p></ScrollLink>
+          <ScrollLink to="Sectors" smooth duration={500}><p className='cursor-pointer'>Sectors</p></ScrollLink>
+          <Link to="/government"><p className='cursor-pointer'>Government</p></Link>
+          <Link to="/private"><p className='cursor-pointer'>Private</p></Link>
+          <Link to="/entrepreneurship"><p className='cursor-pointer'>Entrepreneurship</p></Link>
+          <ScrollLink to="Clients" smooth duration={500}><p className='cursor-pointer'>Clients</p></ScrollLink>
+          <ScrollLink to="Team" smooth duration={500}><p className='cursor-pointer'>Team</p></ScrollLink>
+          <ScrollLink to="Contact" smooth duration={500}><p className='cursor-pointer'>Contact</p></ScrollLink>
         </div>
       </div>
       <div className='md:w-1/3 mb-10'>
