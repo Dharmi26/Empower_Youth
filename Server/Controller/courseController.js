@@ -4,7 +4,6 @@ const Course = require('../Models/Course');
 const {
 	validateURL,
 	getCourseProviderName,
-	getUnacademyCourseTitle,
 	checkDomainAndCatagory
 } = require('../Utils/inferFromCourse');
 const nodeCache = new NodeCache();
