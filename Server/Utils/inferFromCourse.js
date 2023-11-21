@@ -20,23 +20,6 @@ const getCourseProviderName = (url) => {
 	return courseProviderName;
 };
 
-const getUnacademyCourseTitle = (url) => {
-	const buffer = url.split('KSCGY')[1];
-	let courseName = ''; 
-	console.log(buffer);
-	for (let i = 1 ; i < buffer.length ; i++) {
-		if (buffer[i] == '/') break;
-		courseName += buffer[i];
-	}
-	let name = courseName.split('-');
-	courseName = '';
-	for (let word of name) {
-		courseName += word;
-		courseName += ' ';
-	}
-	return courseName.trim();
-};
-
 const getTechnicalSet = () => {
 	const techSet = new Set();
 	techSet.add('javascript');
@@ -107,7 +90,6 @@ const checkCatagory = (courseTitle) => {
 		if (i > 0 && splittedTitle[i - 1] === 'data' && splittedTitle[i] === 'structures') {
 			return 'Technical'
 		}
-		if (i > 0 && splittedTitle[i - 1] === 'project' && splittedTitle[i] === 'management')
 		if (techSet.has(word)) {
 			return 'Technical';
 		}
@@ -125,7 +107,6 @@ const checkCatagory = (courseTitle) => {
 
 const checkDomainAndCatagory = function (url , courseTitle , courseProviderName) {
 	if (courseProviderName === 'unacademy') {
-		// this means the domain is Government & catagory is arts 
 		const catagory = checkCatagory(courseTitle);
 		if (catagory === 'Government Technical') {
 			return catagory;
@@ -144,6 +125,5 @@ const checkDomainAndCatagory = function (url , courseTitle , courseProviderName)
 module.exports = {
 	validateURL,
 	getCourseProviderName,
-	getUnacademyCourseTitle,
 	checkDomainAndCatagory
 }
