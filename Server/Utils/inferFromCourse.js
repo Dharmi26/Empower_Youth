@@ -20,23 +20,6 @@ const getCourseProviderName = (url) => {
 	return courseProviderName;
 };
 
-const getUnacademyCourseTitle = (url) => {
-	const buffer = url.split('KSCGY')[1];
-	let courseName = ''; 
-	console.log(buffer);
-	for (let i = 1 ; i < buffer.length ; i++) {
-		if (buffer[i] == '/') break;
-		courseName += buffer[i];
-	}
-	let name = courseName.split('-');
-	courseName = '';
-	for (let word of name) {
-		courseName += word;
-		courseName += ' ';
-	}
-	return courseName.trim();
-};
-
 const getTechnicalSet = () => {
 	const techSet = new Set();
 	techSet.add('javascript');
@@ -61,6 +44,10 @@ const getTechnicalSet = () => {
 	techSet.add('microservice');
 	techSet.add('microservices');
 	techSet.add('spring');
+	techSet.add('machinelearning');
+	techSet.add('datascience');
+	techSet.add('salesforce');
+	techSet.add('devops');
 	return techSet;
 }
 
@@ -76,18 +63,32 @@ const getNonTechicalSet = () => {
 }
 
 const checkCatagory = (courseTitle) => {
-	const splittedTitle = courseTitle.toLowerCase().split(' ');
-
-	/* the maximum length of the course title will be approx 25 words
+	const splittedTitle = courseTitle.toLowerCase().split('-');
+	/* 
+	   the maximum length of the course title will be approx 25 words
 	   and if each word is of average 10 letters then the over all time
 	   complexity would by O(250) which is O(1)
 	*/
 	
 	const techSet = getTechnicalSet();
+	console.log(splittedTitle);
 	for (let i = 0 ; i < splittedTitle.length ; i++) {
 		const word = splittedTitle[i];
+		if (word == 'railways') {
+			console.log('railways');
+			return 'Government Technical';
+		}
 		if (i > 0 && splittedTitle[i - 1] === 'human' && splittedTitle[i] === 'resource') {
 			return 'NonTechnical';
+		}
+		else if (i > 0 && splittedTitle[i - 1] === 'microsoft' && splittedTitle[i] === 'excel') {
+			return 'NonTechnical'
+		}
+		else if (i > 0 && splittedTitle[i - 1] === 'artificial' && splittedTitle[i] === 'intelligence') {
+			return 'Technical'
+		}
+		if (i > 0 && splittedTitle[i - 1] === 'data' && splittedTitle[i] === 'structures') {
+			return 'Technical'
 		}
 		if (techSet.has(word)) {
 			return 'Technical';
@@ -106,11 +107,14 @@ const checkCatagory = (courseTitle) => {
 
 const checkDomainAndCatagory = function (url , courseTitle , courseProviderName) {
 	if (courseProviderName === 'unacademy') {
-		// this means the domain is Government & catagory is arts 
+		const catagory = checkCatagory(courseTitle);
+		if (catagory === 'Government Technical') {
+			return catagory;
+		}
 		return 'Government Arts'
 	} else {
-		// course provider is udemy
-		if (checkCatagory(courseTitle) === 'Technical') {
+		const catagory = checkCatagory(courseTitle);
+		if (catagory === 'Technical') {
 			return 'Private Technical'
 		}
 		return 'Entrepreneur NonTechnical'
@@ -121,6 +125,5 @@ const checkDomainAndCatagory = function (url , courseTitle , courseProviderName)
 module.exports = {
 	validateURL,
 	getCourseProviderName,
-	getUnacademyCourseTitle,
 	checkDomainAndCatagory
 }

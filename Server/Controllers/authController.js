@@ -1,7 +1,7 @@
 const JWT = require('jsonwebtoken');
 const User = require('../Models/User');
+
 const registerController = async (req , res) => { 
-	// console.log("inside controller")
 	try {
 		const {name , email , password , isAdmin = false} = req.body;
 		const userFound = await User.findOne({email : email});
@@ -36,7 +36,6 @@ const loginController = async (req , res) => {
 	try {
 		const {email , password} = req.body;
 		const user = await User.findOne({email});
-		console.log(user)
 		if (!user) {
 			return res.status(401).send({
 				success : false,

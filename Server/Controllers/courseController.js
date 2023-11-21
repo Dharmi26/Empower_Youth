@@ -1,200 +1,242 @@
+const NodeCache = require('node-cache');
 const User = require('../Models/User');
 const Course = require('../Models/Course');
-const getAxiosResponse = require('../Utils/axiosRequest');
 const {
 	validateURL,
 	getCourseProviderName,
-	getUnacademyCourseTitle,
 	checkDomainAndCatagory
-} = require('../Utils/inferFromCourse')
+} = require('../Utils/inferFromCourse');
+const nodeCache = new NodeCache();
 
-// const courseUrl = 'https://www.udemy.com/api-2.0/courses/beginning-javascript';
+/*
+udemy courseUrl = 'https://www.udemy.com/api-2.0/courses/beginning-javascript'
 
-// we are using Udemy for Private and Entrepreneurship courses and unacademy for government exams
-// udemy's scrapping api does not provides the duration so either we hard code
-// or remove the duration field from the Course model
+For unacademy courses , the suscription cost is 3139 ruppees per month
+Course Providers are Udemy , coursera and unacademy courses only
+*/
+
+
+//-----------------------------------POST Controllers---------------------------------//
+
 
 const addCourseController = async function (req , res) {
 	try {
-		const url = req.body.courseUrl; 
-		const courseUrl = validateURL(url);
-		const courseProviderName = getCourseProviderName(courseUrl);
+		let bodyUrl = req.body.url;
+		bodyUrl = validateURL(bodyUrl);
 
-		if (courseProviderName === 'unacademy') {
-			const courseTitle = getUnacademyCourseTitle(courseUrl);
+		nodeCache.del('courses');
+
+		const isFound = await Course.findOne({courseURL : req.body.url});
+		if (isFound) {
+			return res.status(400).send({
+				success : false,
+				message : 'This course is already added in the database'
+			});
+		}
+
+		const courseProviderName = getCourseProviderName(bodyUrl);
+		if (courseProviderName === 'udemy') {
+			bodyUrl = 'https://www.udemy.com/api-2.0/courses/';
+			let refUrl = req.body.url;
+
+			if (refUrl[refUrl.length - 1] === '/') {
+				refUrl = refUrl.slice(0 , -1);
+			}
+			let courseName = '';
+			for (let i = refUrl.length - 1 ; i >= 0 ; i--) {
+			    if (refUrl[i] === '/') {
+			    	break;
+			    }
+			    courseName +=  refUrl[i];
+			}
+
+			courseName = courseName.split('').reverse().join('')
+			bodyUrl += courseName;
+
+			const domainAndCatagory = checkDomainAndCatagory(req.body.url , courseName , 'udemy').split(' ');
 			const newCourse = await Course({
-				courseName : courseTitle,
-				coursePrice : 3499,
-				courseProvider : 'unacademy',
-				courseURL : courseUrl,
-				domainName : 'Government',
-				subCatagory : 'Arts'
+				courseName : courseName,
+				coursePrice : '389₹',
+				courseProvider : 'Udemy',
+				courseURL : req.body.url,
+				domainName : domainAndCatagory[0],
+				subCatagory : domainAndCatagory[1]
 			});
 			await newCourse.save();
 			return res.status(201).send({
 				success : true,
 				message : 'Course added successfully',
-				newCourse
+				course : newCourse
 			});
-		}
-		const data = await getAxiosResponse(courseUrl);
-		const domainAndCatagory = checkDomainAndCatagory(courseUrl , data.title , courseProviderName).split(' ');
 
-		const domain = domainAndCatagory[0];
-		const catagory = domainAndCatagory[1];
+		} else if (courseProviderName === 'unacademy') {
+			// https://unacademy.com/lesson/overview-modern-indian-history-in-hindi/1D6SM30V
 
-		const urlOfCourse = 'https://www.' + courseProviderName + '.com' + data.url;
-		const course = await Course.findOne({courseURL : urlOfCourse});
+			const url = req.body.url;
+			let cnt = 0 , start = 0 , end = 0;
+			for (let i = url.length - 1 ; i >= 0 ; i--) {
+				if (cnt === 2) {
+					break;
+				}
+				if (url[i] === '/') {
+					if (cnt === 0) {
+						end = i - 1;
+						cnt++;
+					} else if (cnt === 1) {
+						start = i + 1;
+						cnt++;
+					}
+				}
+			}
+			let courseName = '';
+			for (let i = start ; i <= end ; i++) {
+				courseName += url[i];
+			}
+			let splittedArray = courseName.split('-');
+			courseName = '';
+			for (let i = 0 ; i < splittedArray.length ; i++) {
+				courseName += splittedArray[i];
+				if (i !== splittedArray.length - 1) {
+					courseName += ' ';
+				}
+			}
 
-		if (course) {
-			return res.status(400).send({
+			const domainAndCatagory = checkDomainAndCatagory(req.body.url , courseName , 'unacademy').split(' ');
+			const newCourse = await Course({
+				courseName : courseName,
+				coursePrice : 'Subscription for 3139₹ / month',
+				courseProvider : 'Unacademy',
+				courseURL : req.body.url,
+				domainName : domainAndCatagory[0],
+				subCatagory : domainAndCatagory[1]
+			})
+
+			await newCourse.save();
+			return res.status(201).send({
 				success : true,
-				message : 'This course is already present in the database'
+				message : 'Course added successfully',
+				course : newCourse
+			});
+
+		} else if (courseProviderName === 'coursera') {
+			const url = req.body.url;
+			let i = url.length - 1;
+			while (i >= 0) {
+				if (url[i] === '/') {
+					break;
+				}
+				i--;
+			}
+			i++;
+			let courseName = '';
+			while (i < url.length) {
+				courseName += url[i];
+				i++;
+			}
+			const newCourse = await Course({
+				courseName : courseName,
+				courseProvider : 'Coursera',
+				coursePrice : '777₹ / month for 3 months',	
+				courseURL : req.body.url,
+				domainName : 'Entrepreneur',
+				subCatagory : 'NonTechnical'
+			});
+			await newCourse.save();
+			return res.status(201).send({
+				success : true,
+				message : 'Course added successfully',
+				course : newCourse
 			});
 		}
-
-		const newCourse = await Course({
-			courseName : data.title,
-			coursePrice : data.price_detail.amount,
-			courseProvider : courseProviderName,
-			courseURL : urlOfCourse,
-			domainName : domain,
-			subCatagory : catagory
-		});
-		await newCourse.save();
-		
-		return res.status(201).send({
-			success : true,
-			message : 'Course added successfully',
-			newCourse
-		});
+	
 	} catch (error) {
 		return res.status(500).send({
 			success : false,
-			message : 'Error in the addCourseController Private API',
-			error : error.message
-		});
-	}
-}
-
-const getCoursesByDomainController = async function (req , res) {
-	try {
-		const domain = req.body.domain;
-		const domainArray = ['Government' , 'Private' , 'Entrepreneur'];
-		if (!domainArray.includes(domain)) {
-			return res.status(400).send({
-				success : false,
-				message : 'Please provide the domain name from {Government , Private , Entrepreneur} only'
-			});
-		}
-		const domainCourses = await Course.find({domainName : domain} , {
-			__v : 0
-		});
-		return res.status(200).send({
-			success : true,
-			message : 'Courses fetched successfully',
-			courses : domainCourses
-		});
-	} catch (error) {
-		return res.status(500).send({
-			success : false,
-			message : 'Error in getCourseByDomainController Public API',
+			message : 'Error in addCourseController Private API',
 			error : error.message
 		});
 	}
 }
 
 
-const getCoursesByCatagoryController = async function (req , res) {
-	try {
-		const catagoryName = req.params.catagoryName;
-		const catagoryArray = ['Technical' , 'NonTechnical' , 'Arts'];
+//-----------------------------------GET Controllers---------------------------------//
 
-		if (!catagoryArray.includes(catagoryName)) {
-			return res.status(400).send({
-				success : false,
-				message : 'Please provide the domain name from {Technical , NonTechnical , Arts} only'
-			});
-		}
-
-		const catagoryCourses = await Course.find({subCatagory : catagoryName} , {
-			__v : 0
-		});
-		return res.status(200).send({
-			success : true,
-			message : 'Couses fetched successfully',
-			courses : catagoryCourses
-		});
-
-	} catch (error) {
-		return res.staus(500).send({
-			success : false,
-			message:  'Error in getCoursesByCatagoryController Public API',
-			error : error.message
-		});
-	}
-}
 
 const getAllCoursesController = async function (req , res) {
 	try {
-		const courses = await Course.find({} , {
-			__v : 0
-		});
+		const domain = req.query.domain;
+		const catagory = req.query.catagory;
+		const provider = req.query.provider;
+
+		let courses = [];
+		if (!provider) {
+			if (!domain && !catagory) {
+				if (nodeCache.has('courses')) {
+					courses = JSON.parse(nodeCache.get("courses"))
+				} else {
+					courses = await Course.find({} , {
+						__v : 0,
+						_id : 0
+					});
+					nodeCache.set("courses" , JSON.stringify(courses));
+				}
+			} else if (domain && !catagory) {
+				courses = await Course.find({domainName : domain} , {
+					_id : 0,
+					__v : 0
+				});
+			} else if (!domain && catagory) {
+				courses = await Course.find({subCatagory : catagory} , {
+					_id : 0,
+					__v : 0
+				});
+			} else {
+				courses = await Course.find({domainName : domain , subCatagory : catagory} , {
+					_id : 0,
+					__v : 0
+				})
+			}
+		} else {
+			if (!domain && !catagory) {
+				courses = await Course.find({courseProvider : provider} , {
+					__v : 0,
+					_id : 0
+				});
+			} else if (domain && !catagory) {
+				courses = await Course.find({courseProvider : provider , domainName : domain} , {
+					_id : 0,
+					__v : 0
+				});
+			} else if (!domain && catagory) {
+				courses = await Course.find({courseProvider : provider , subCatagory : catagory} , {
+					_id : 0,
+					__v : 0
+				});
+			} else {
+				courses = await Course.find({courseProvider : provider , domainName : domain , subCatagory : catagory} , {
+					_id : 0,
+					__v : 0
+				})
+			}
+		}
+
 		return res.status(200).send({
 			success : true,
 			message : 'Courses fetched successfully',
-			courses
+			courseCount : courses.length,
+			courses : courses
 		});
 	} catch (error) {
 		return res.status(500).send({
 			success : false,
-			message : 'Error in the getAllCourseController Public API',
+			message : 'Error in getAllCoursesController Public API',
 			error : error.message
 		});
 	}
 }
 
-const buyCourseController = async function (req , res) {
-	try {
-		const courseId = req.params.courseId;
-		const email = req.user.email;
-		
-		const user = await User.findOne({email : email});
-		const course = await Course.findById({_id : courseId});
-		
-		if (user.courses.includes(courseId)) {
-			return res.status(400).send({
-				success : false,
-				message : 'You have already bought this course earlier'
-			});
-		}
-
-		const coursesOfUser = user.courses;
-		coursesOfUser.push(course);
-		
-		user.courses = coursesOfUser;
-		await user.save();
-
-		return res.status(200).send({
-			success : true,
-			message : 'You have successfully bought the course',
-			course : course
-		});
-
-	} catch (error) {
-		console.log(error);
-		return res.status(500).send({
-			success : false,
-			message:  'Error in buyCourseController Public API',
-			error : error.message
-		});
-	}
-}
 
 module.exports = {
 	addCourseController,
-	getCoursesByDomainController,
-	getCoursesByCatagoryController,
-	buyCourseController,
 	getAllCoursesController
 }
