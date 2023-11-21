@@ -12,22 +12,30 @@ const {
 } = require('../Middlewares/Validation/validateUser');
 const isAuth = require('../Middlewares/isAuth');
 
-// end-point : auth/register
-// API : register
-// http request : POST
 
+//-----------------------------------POST APIs---------------------------------//
+
+
+/*
+	@desc : registers the user
+	@API : Public
+	@method : post
+*/
 router.post('/register' , registerValidation , userValidation , registerController);
 
-// end-point : auth/login
-// API : login
-// http request : POST
 
+/*
+	@desc : logins the user
+	@API : Public
+	@method : post
+*/
 router.post('/login' , loginValidation , userValidation , loginController);
 
-// end-point : auth/logout
-// API : logout
-// http request : POST
-
+/*
+	@desc : logouts the user
+	@API : Public
+	@method : post
+*/
 router.post('/logout' , isAuth , logoutController);
 
 module.exports = router;
