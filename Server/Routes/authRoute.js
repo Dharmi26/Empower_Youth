@@ -16,13 +16,15 @@ const isAuth = require('../Middlewares/isAuth');
 // API : register
 // http request : POST
 
-router.post('/register' , registerValidation , userValidation , registerController);
+// router.post('/register' , registerValidation , userValidation , registerController);
+router.post('/register' , registerController);
 
 // end-point : auth/login
 // API : login
 // http request : POST
 
-router.post('/login' , loginValidation , userValidation , loginController);
+// router.post('/login' , loginValidation , userValidation , loginController);
+router.post('/login' , loginController);
 
 // end-point : auth/logout
 // API : logout

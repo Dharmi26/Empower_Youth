@@ -74,8 +74,7 @@ const AllTrainings = () => {
       <SearchBar onSearch={handleSearch} />
 
       <div className='container mx-50'>
-        <div className='flex gap-6 items-center justify-center'>
-          {/* Filter for Sector */}
+        {/* <div className='flex gap-6 items-center justify-center'>
           <select
             className='mt-4 p-2 border border-gray-300 rounded'
             onChange={(e) => setSelectedSector(e.target.value)}
@@ -86,7 +85,6 @@ const AllTrainings = () => {
             <option value='Entrepreneurship'>Entrepreneurship</option>
           </select>
 
-          {/* Filter for Background */}
           <select
             className='mt-4 p-2 border border-gray-300 rounded'
             onChange={(e) => setSelectedBackground(e.target.value)}
@@ -97,7 +95,6 @@ const AllTrainings = () => {
             <option value='Art'>Art</option>
           </select>
 
-          {/* Filter for Cost */}
           <select
             className='mt-4 p-2 border border-gray-300 rounded'
             onChange={(e) => setSelectedCost(e.target.value)}
@@ -106,7 +103,7 @@ const AllTrainings = () => {
             <option value='Paid'>Paid</option>
             <option value='Unpaid'>Unpaid</option>
           </select>
-        </div>
+        </div> */}
         <CardList trainings={filteredTrainings} />
       </div>
     </div>

@@ -6,6 +6,8 @@ import { BiSearch } from 'react-icons/bi';
 import { FaUserCircle } from 'react-icons/fa';
 import { HiBars3 } from 'react-icons/hi2';
 import { RxCross1 } from 'react-icons/rx';
+import { AiOutlineLogout } from "react-icons/ai";
+import Cookies from "universal-cookie";
 
 const Navbar = () => {
   const links = [
@@ -34,6 +36,18 @@ const Navbar = () => {
 
   const [nav, setNav] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false); // Manage dropdown visibility
+
+
+  let name = localStorage.getItem("Name");
+  console.log(name);
+
+  const cookies = new Cookies();
+
+  const logout = () => {
+    cookies.remove("authToken");
+    localStorage.clear();
+    Navbar();
+  };
 
   return (
     <div>
@@ -68,6 +82,7 @@ const Navbar = () => {
                             </li></Link>
                           ))}
                         </ul>
+                        <Link to="/trainings"><li className='px-4 py-2 cursor-pointer'>View All</li></Link>
                       </div>
                     )}
                   </div>
@@ -91,11 +106,25 @@ const Navbar = () => {
               placeholder="Search"
             />
           </div>
-          <div className="hidden md:flex cursor-pointer">
-            <Link to="/login">
-              <FaUserCircle size="35" />
-            </Link>
-          </div>
+
+          {name!=null?(
+            <>
+            <div className="hidden md:flex cursor-pointer uppercase font-semibold">
+              {name.split(" ")[0]}
+            </div>
+            <Link onClick={logout}><div className='hidden md:flex cursor-pointer'><AiOutlineLogout size="30"/></div></Link>
+            </>
+          ):(
+            <>
+            <div className="hidden md:flex cursor-pointer">
+              <Link to="/login">
+                <FaUserCircle size="35" />
+              </Link>
+            </div>
+            </>
+          )}
+
+
           <div
             className="md:hidden cursor-pointer"
             onClick={() => setNav(!nav)}
@@ -107,12 +136,20 @@ const Navbar = () => {
 
       {nav && (
         <div className="md:hidden bg-navblue text-white h-screen w-full flex flex-col align-middle pt-24">
-          <div className="cursor-pointer flex flex-row gap-3 justify-center pb-5">
+          {name!=null?(
+            <div className="cursor-pointer flex flex-row gap-3 justify-center pb-5">
+              <p className='uppercase font-semibold'>{name.split(" ")[0]}</p>
+              <Link onClick={logout}><div className='cursor-pointer'><AiOutlineLogout size="20"/></div></Link>
+          </div>
+          ):(
+            <div className="cursor-pointer flex flex-row gap-3 justify-center pb-5">
             <Link to="/login">
               <FaUserCircle size="20" />
               <p>Login</p>
             </Link>
           </div>
+          )}
+          
           <hr />
           <div className="flex flex-col justify-center pt-5">
             <ul className="flex flex-col gap-6 justify-center text-center">
