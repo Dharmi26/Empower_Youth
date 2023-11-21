@@ -1,7 +1,11 @@
 const JWT = require('jsonwebtoken');
 const User = require('../Models/User');
 
-const registerController = async (req , res) => { 
+
+//-----------------------------------POST Controllers---------------------------------//
+
+
+const registerController = async function (req , res) { 
 	try {
 		const {name , email , password , isAdmin = false} = req.body;
 		const userFound = await User.findOne({email : email});
@@ -32,7 +36,7 @@ const registerController = async (req , res) => {
 	}
 };
 
-const loginController = async (req , res) => { 
+const loginController = async function (req , res) { 
 	try {
 		const {email , password} = req.body;
 		const user = await User.findOne({email});
@@ -88,7 +92,7 @@ const loginController = async (req , res) => {
 	}
 };
 
-const logoutController = async (req , res) => { 
+const logoutController = async function (req , res) { 
 	try {
 		if (req.headers && req.headers.authorization) {
 			const token = req.headers.authorization.split(' ')[1];
@@ -107,10 +111,10 @@ const logoutController = async (req , res) => {
 			});
 		}
 	} catch (error) {
-		console.log('Error while logging out : ' + error.message);
 		return res.status(501).send({
 			success : false,
-			message : 'Error in logoutController Public API'
+			message : 'Error in logoutController Public API',
+			error : error.message
 		})
 	}
 };
