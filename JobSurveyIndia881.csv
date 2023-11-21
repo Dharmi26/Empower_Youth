@@ -1,0 +1,38 @@
+JobSurveyIndia
+,Employment Sector,Employment Background,Cost,Degree,Training websites
+0,Private Sector,Technical,No,Yes,"takeUforward.org,mygreatlearning.com"
+1,Private Sector,Technical,No ,No,"takeUforward.org,mygreatlearning.com"
+2,Private Sector,Technical,Yes,Yes,udemy.com
+3,Private Sector,Technical,Yes,No,udemy.com
+4,Private Sector,Non-Technical,No,Yes,mygreatlearnijg.com
+5,Private Sector,Non-Technical,No ,No,mygreatlearning.com
+6,Private Sector,Non-Technical,Yes,Yes,udemy.com
+7,Private Sector,Non-Technical,Yes,No,udemy.com
+8,Private Sector,Art,No ,Yes ,"takeUforward.org,mygreatlearning.com"
+9,Private Sector,Art,No ,No,"takeUforward.org,mygreatlearning.com"
+10,Private Sector,Art,Yes,Yes,udemy.com
+11,Private Sector,Art,Yes,No,udemy.com
+12,Government Sector,Technical,No,Yes,testbook.com
+13,Government Sector,Technical,No,No,testbook.com
+14,Government Sector,Technical,Yes,Yes,unacademy.com
+15,Government Sector,Technical,Yes,No,unacademy.com
+16,Government Sector,Non-Technical,No ,Yes,testbook.com
+17,Government Sector,Non-Technical,No ,No,testbook.com
+18,Government Sector,Non-Technical,Yes,Yes ,unacademy.com
+19,Government Sector,Non-Technical,Yes,No,unacademy.com
+20,Government Sector,Art,No,Yes,testbook.com
+21,Government Sector,Art,No,No,testbook.com
+22,Government Sector,Art,Yes,Yes,unacademy.com
+23,Government Sector,Art,Yes,No,unacademy.com
+25,Entrepreneurship,Technical,No ,Yes,alison.com
+26,Entrepreneurship,Technical,No,No,alison.com
+27,Entrepreneurship,Technical,Yes,Yes,mastersportal.com
+28,Entrepreneurship,Technical,Yes,No,mastersportal.com
+29,Entrepreneurship,Non-Technical,No ,Yes,alison.com
+30,Entrepreneurship,Non-Technical,No ,No,alison.com
+31,Entrepreneurship,Non-Technical,Yes,Yes,mastersportal.com
+32,Entrepreneurship,Non-Technical,Yes,No,mastersportal.com
+33,Entrepreneurship,Art,No ,Yes,alison.com
+34,Entrepreneurship,Art,No ,No,alison.com
+35,Entrepreneurship,Art,Yes,Yes,mastersportal.com
+36,Entrepreneurship,Art,Yes ,No,mastersportal.com
