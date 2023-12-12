@@ -20,11 +20,10 @@ router.post('/add' , allowedToAdmin , addCourseController);
 //-----------------------------------POST APIs---------------------------------//
 
 /*
-	@desc : fethces the courses from the database
+	@desc : fetches the courses from the database based on text provided in the body
 	@API : Public
 	@method : get
-	@note : This one is a queried API  
 */
-router.get('/courses' , getAllCoursesController);
+router.get('/courses' , isAuth , getAllCoursesController);
 
 module.exports = router;
