@@ -156,7 +156,7 @@ const addCourseController = async function (req , res) {
 			error : error.message
 		});
 	}
-}
+};
 
 
 //-----------------------------------GET Controllers---------------------------------//
@@ -164,68 +164,43 @@ const addCourseController = async function (req , res) {
 
 const getAllCoursesController = async function (req , res) {
 	try {
-		const domain = req.query.domain;
-		const catagory = req.query.catagory;
-		const provider = req.query.provider;
+		let {pattern} = req.body;
+		let courses = null;
 
-		let courses = [];
-		if (!provider) {
-			if (!domain && !catagory) {
-				if (nodeCache.has('courses')) {
-					courses = JSON.parse(nodeCache.get("courses"))
-				} else {
-					courses = await Course.find({} , {
-						__v : 0,
-						_id : 0
-					});
-					nodeCache.set("courses" , JSON.stringify(courses));
-				}
-			} else if (domain && !catagory) {
-				courses = await Course.find({domainName : domain} , {
-					_id : 0,
-					__v : 0
-				});
-			} else if (!domain && catagory) {
-				courses = await Course.find({subCatagory : catagory} , {
-					_id : 0,
-					__v : 0
-				});
+		if (!pattern) {
+			if (nodeCache.has('courses')) {
+				courses = JSON.parse(nodeCache.get('courses'));
 			} else {
-				courses = await Course.find({domainName : domain , subCatagory : catagory} , {
-					_id : 0,
-					__v : 0
-				})
-			}
-		} else {
-			if (!domain && !catagory) {
-				courses = await Course.find({courseProvider : provider} , {
+				courses = await Course.find({} , {
 					__v : 0,
 					_id : 0
 				});
-			} else if (domain && !catagory) {
-				courses = await Course.find({courseProvider : provider , domainName : domain} , {
-					_id : 0,
-					__v : 0
-				});
-			} else if (!domain && catagory) {
-				courses = await Course.find({courseProvider : provider , subCatagory : catagory} , {
-					_id : 0,
-					__v : 0
-				});
+				
+				nodeCache.set('courses' , JSON.stringify(courses));
+			}
+		} else {
+			pattern = pattern.trim().toLowerCase();
+
+			if (nodeCache.has(pattern)) {
+				courses = JSON.parse(nodeCache.get(pattern));
 			} else {
-				courses = await Course.find({courseProvider : provider , domainName : domain , subCatagory : catagory} , {
-					_id : 0,
-					__v : 0
-				})
+				courses = await Course.find({courseName : {
+					$regex : pattern
+				}} , {
+					__v : 0,
+					_id : 0
+				});
+
+				nodeCache.set(pattern , JSON.stringify(courses));
 			}
 		}
 
 		return res.status(200).send({
 			success : true,
 			message : 'Courses fetched successfully',
-			courseCount : courses.length,
-			courses : courses
+			courses
 		});
+
 	} catch (error) {
 		return res.status(500).send({
 			success : false,
@@ -233,7 +208,7 @@ const getAllCoursesController = async function (req , res) {
 			error : error.message
 		});
 	}
-}
+};
 
 
 module.exports = {
