@@ -1,63 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SectorCards/SearchBar';
 import CardList from '../components/SectorCards/CardList';
+import axios from 'axios';
 
 const AllTrainings = () => {
-  const [trainings] = useState([
-    {
-      id: 1,
-      trainingName: 'Training 1',
-      trainingPeriod: '3 months',
-      trainingCost: '$500',
-      trainingPartner: 'Udemy',
-      sector: 'Government',
-      background: 'Technical',
-      cost: 'Paid',
-    },
-    {
-      id: 2,
-      trainingName: 'Training 2',
-      trainingPeriod: '2 months',
-      trainingCost: '$400',
-      trainingPartner: 'Udemy',
-      sector: 'Private',
-      background: 'Non-Technical',
-      cost: 'Unpaid',
-    },
-    {
-      id: 3,
-      trainingName: 'Training 3',
-      trainingPeriod: '4 months',
-      trainingCost: '$600',
-      trainingPartner: 'Udemy',
-      sector: 'Entrepreneurship',
-      background: 'Art',
-      cost: 'Paid',
-    },
-    // Add more training data as needed
-  ]);
+  const [course, setCourse] = React.useState([]);
+  const [filteredTrainings, setFilteredTrainings] = useState([]);
 
-  const [filteredTrainings, setFilteredTrainings] = useState(trainings);
-
-  const [selectedSector, setSelectedSector] = useState('');
-  const [selectedBackground, setSelectedBackground] = useState('');
-  const [selectedCost, setSelectedCost] = useState('');
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/course/courses")
+      .then((response) => {
+        console.log('API Response:', response.data);
+        setCourse(response.data.courses);
+        setFilteredTrainings(response.data.courses); // Initial state with all trainings
+      })
+      .catch((error) => {
+        console.error('Error fetching course data:', error);
+      });
+  }, []);
 
   const handleSearch = (query) => {
-    const filtered = trainings.filter((training) =>
-      training.trainingName.toLowerCase().includes(query.toLowerCase())
+    let filtered = course.filter((training) =>
+      training.courseName.toLowerCase().includes(query.toLowerCase())
     );
-
-    if (selectedSector) {
-      filtered = filtered.filter((training) => training.sector === selectedSector);
-    }
-    if (selectedBackground) {
-      filtered = filtered.filter((training) => training.background === selectedBackground);
-    }
-    if (selectedCost) {
-      filtered = filtered.filter((training) => training.cost === selectedCost);
-    }
 
     setFilteredTrainings(filtered);
   };
@@ -74,37 +41,7 @@ const AllTrainings = () => {
       <SearchBar onSearch={handleSearch} />
 
       <div className='container mx-50'>
-        {/* <div className='flex gap-6 items-center justify-center'>
-          <select
-            className='mt-4 p-2 border border-gray-300 rounded'
-            onChange={(e) => setSelectedSector(e.target.value)}
-          >
-            <option value=''>Select Sector</option>
-            <option value='Government'>Government</option>
-            <option value='Private'>Private</option>
-            <option value='Entrepreneurship'>Entrepreneurship</option>
-          </select>
-
-          <select
-            className='mt-4 p-2 border border-gray-300 rounded'
-            onChange={(e) => setSelectedBackground(e.target.value)}
-          >
-            <option value=''>Select Background</option>
-            <option value='Technical'>Technical</option>
-            <option value='Non-Technical'>Non-Technical</option>
-            <option value='Art'>Art</option>
-          </select>
-
-          <select
-            className='mt-4 p-2 border border-gray-300 rounded'
-            onChange={(e) => setSelectedCost(e.target.value)}
-          >
-            <option value=''>Select Cost</option>
-            <option value='Paid'>Paid</option>
-            <option value='Unpaid'>Unpaid</option>
-          </select>
-        </div> */}
-        <CardList trainings={filteredTrainings} />
+        <CardList trainings={filteredTrainings}/>
       </div>
     </div>
   );

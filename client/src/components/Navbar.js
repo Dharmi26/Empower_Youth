@@ -39,7 +39,6 @@ const Navbar = () => {
 
 
   let name = localStorage.getItem("Name");
-  console.log(name);
 
   const cookies = new Cookies();
 
