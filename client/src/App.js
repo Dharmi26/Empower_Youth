@@ -9,6 +9,7 @@ import Private from "./pages/Private";
 import Entrepreneurship from "./pages/Entrepreneurship";
 import Footer from "./components/Footer";
 import AllTrainings from "./pages/AllTrainings";
+import Psychomatric from "./components/Psychomatric";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/private" element={<Private />} />
         <Route path="/entrepreneurship" element={<Entrepreneurship />} />
         <Route path="/trainings" element={<AllTrainings />} />
+        <Route path="/psychomatrictest" element={<Psychomatric/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>

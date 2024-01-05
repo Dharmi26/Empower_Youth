@@ -29,7 +29,7 @@ const Card = ({ training }) => {
         </p>
         <p className="text-gray-600 mb-2 flex items-center"><IoIosPricetags className="mr-2" /> {training.coursePrice}</p>
         <p className="text-gray-600 mb-2 flex items-center">
-          <BiSolidCategory size="20" className="mr-2" /> {training.courseProvider}
+          <BiSolidCategory size="20" className="mr-2" /> {training.domainName}
         </p>        
         <a href={training.courseURL} target='_blank' rel='noopener noreferrer' className='text-blue-500 flex items-center pt-5'>
           <span className='mr-2'>Know more</span> <HiChevronDoubleRight />

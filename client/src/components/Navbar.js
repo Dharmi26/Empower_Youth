@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.jpg';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link } from 'react-router-dom';
-import { BiSearch } from 'react-icons/bi';
+// import { BiSearch } from 'react-icons/bi';
 import { FaUserCircle } from 'react-icons/fa';
 import { HiBars3 } from 'react-icons/hi2';
 import { RxCross1 } from 'react-icons/rx';
@@ -95,7 +95,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex flex-row gap-5 justify-between items-center">
-          <div className="flex flex-row items-center">
+          {/* <div className="flex flex-row items-center">
             <div className="bg-white text-navblue w-25 p-2 rounded-l-sm">
               <BiSearch size="24" />
             </div>
@@ -104,7 +104,7 @@ const Navbar = () => {
               type="text"
               placeholder="Search"
             />
-          </div>
+          </div> */}
 
           {name!=null?(
             <>
