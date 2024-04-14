@@ -1,0 +1,218 @@
+[
+    {
+        "questionNumber": "1",
+        "category": "Private",
+        "question": "How do you ensure effective communication with clients/customers in a private sector setting?",
+        "answer": "Listen actively to understand their needs and concerns."
+    },
+    {
+        "questionNumber": "2",
+        "category": "Private",
+        "question": "How do you handle confidential information within a private organization?",
+        "answer": "Adhere strictly to company policies and confidentiality agreements."
+    },
+    {
+        "questionNumber": "3",
+        "category": "Private",
+        "question": "How do you communicate performance feedback to your subordinates in a private company?",
+        "answer": "Provide constructive criticism with clear examples and suggestions for improvement."
+    },
+    {
+        "questionNumber": "4",
+        "category": "Private",
+        "question": "How do you handle conflicts with coworkers in a private sector environment?",
+        "answer": "Address conflicts directly and respectfully to find a mutually beneficial solution."
+    },
+    {
+        "questionNumber": "5",
+        "category": "Private",
+        "question": "How do you approach problem-solving when faced with tight deadlines in a private sector role?",
+        "answer": "Break down the problem into manageable tasks and prioritize them based on urgency."
+    },
+    {
+        "questionNumber": "6",
+        "category": "Private",
+        "question": "How do you innovate to improve processes or products within a private organization?",
+        "answer": "Encourage brainstorming sessions and welcome diverse ideas."
+    },
+    {
+        "questionNumber": "7",
+        "category": "Private",
+        "question": "How do you respond to unforeseen obstacles while working on a project in a private company?",
+        "answer": "Adapt quickly and reassess the plan to overcome the obstacle."
+    },
+    {
+        "questionNumber": "8",
+        "category": "Private",
+        "question": "How do you prioritize tasks when multiple projects demand your attention in a private sector role?",
+        "answer": "Assess the urgency and importance of each task and prioritize accordingly."
+    },
+    {
+        "questionNumber": "9",
+        "category": "Private",
+        "question": "How do you adjust to changes in technology or industry trends in a private sector role?",
+        "answer": "Stay updated through continuous learning and seek training opportunities."
+    },
+    {
+        "questionNumber": "10",
+        "category": "Private",
+        "question": "How do you handle a change in leadership within a private organization?",
+        "answer": "Support the new leader and adapt to their leadership style."
+    },
+    {
+        "questionNumber": "11",
+        "category": "Private",
+        "question": "How do you respond to criticism or negative feedback in a private sector environment?",
+        "answer": "Reflect on the feedback and use it as an opportunity for self-improvement."
+    },
+    {
+        "questionNumber": "12",
+        "category": "Private",
+        "question": "How do you handle a sudden change in project requirements in a private company?",
+        "answer": "Embrace the change and adjust your approach accordingly."
+    },
+    {
+        "questionNumber": "13",
+        "category": "Government",
+        "question": "How do you ensure effective communication with citizens or constituents in a government role?",
+        "answer": "Listen actively to understand their needs and concerns."
+    },
+    {
+        "questionNumber": "14",
+        "category": "Government",
+        "question": "How do you handle sensitive information in a government setting?",
+        "answer": "Adhere strictly to government regulations and confidentiality protocols."
+    },
+    {
+        "questionNumber": "15",
+        "category": "Government",
+        "question": "How do you communicate policy changes to the public in a government role?",
+        "answer": "Provide clear and transparent information to ensure understanding."
+    },
+    {
+        "questionNumber": "16",
+        "category": "Government",
+        "question": "How do you handle conflicts with other government officials or departments?",
+        "answer": "Work collaboratively to find solutions that benefit all parties involved."
+    },
+    {
+        "questionNumber": "17",
+        "category": "Government",
+        "question": "How do you approach problem-solving when faced with complex bureaucratic procedures in a government role?",
+        "answer": "Navigate the procedures patiently and seek assistance when necessary."
+    },
+    {
+        "questionNumber": "18",
+        "category": "Government",
+        "question": "How do you innovate to improve government services or processes?",
+        "answer": "Collaborate with stakeholders to identify areas for improvement and implement innovative solutions."
+    },
+    {
+        "questionNumber": "19",
+        "category": "Government",
+        "question": "How do you respond to budget constraints while working on a government project?",
+        "answer": "Explore alternative funding sources and prioritize spending based on critical needs."
+    },
+    {
+        "questionNumber": "20",
+        "category": "Government",
+        "question": "How do you prioritize tasks when multiple projects demand your attention in a government role?",
+        "answer": "Assess the impact and urgency of each project and prioritize accordingly."
+    },
+    {
+        "questionNumber": "21",
+        "category": "Government",
+        "question": "How do you adapt to changes in government policies or regulations?",
+        "answer": "Stay updated through continuous learning and seek guidance from legal experts."
+    },
+    {
+        "questionNumber": "22",
+        "category": "Government",
+        "question": "How do you handle a change in leadership within a government department?",
+        "answer": "Support the new leader and adapt to their leadership style."
+    },
+    {
+        "questionNumber": "23",
+        "category": "Government",
+        "question": "How do you respond to public criticism or negative feedback in a government role?",
+        "answer": "Acknowledge the concerns and take steps to address them transparently."
+    },
+    {
+        "questionNumber": "24",
+        "category": "Government",
+        "question": "How do you handle a sudden change in government priorities or objectives?",
+        "answer": "Adapt your plans and priorities to align with the new objectives."
+    },
+    {
+        "questionNumber": "25",
+        "category": "Entrepreneur",
+        "question": "How do you effectively communicate your business idea to potential investors or partners?",
+        "answer": "Present a clear and compelling vision with concrete plans for implementation."
+    },
+    {
+        "questionNumber": "26",
+        "category": "Entrepreneur",
+        "question": "How do you handle customer feedback or complaints as an entrepreneur?",
+        "answer": "Listen attentively to understand the customer's perspective and take appropriate action."
+    },
+    {
+        "questionNumber": "27",
+        "category": "Entrepreneur",
+        "question": "How do you communicate your company's values and mission to employees?",
+        "answer": "Lead by example and reinforce company values through actions and decisions."
+    },
+    {
+        "questionNumber": "28",
+        "category": "Entrepreneur",
+        "question": "How do you negotiate with suppliers or vendors to get the best deals for your business?",
+        "answer": "Seek mutually beneficial agreements through open and transparent negotiations."
+    },
+    {
+        "questionNumber": "29",
+        "category": "Entrepreneur",
+        "question": "How do you approach problem-solving when faced with limited resources as an entrepreneur?",
+        "answer": "Find creative solutions and leverage available resources effectively."
+    },
+    {
+        "questionNumber": "30",
+        "category": "Entrepreneur",
+        "question": "How do you innovate to differentiate your business from competitors?",
+        "answer": "Continuously seek feedback from customers and adapt products or services accordingly."
+    },
+    {
+        "questionNumber": "31",
+        "category": "Entrepreneur",
+        "question": "How do you respond to market fluctuations or changes in consumer demand?",
+        "answer": "Adapt quickly by adjusting products or services to meet evolving market needs."
+    },
+    {
+        "questionNumber": "32",
+        "category": "Entrepreneur",
+        "question": "How do you prioritize tasks when running a startup with limited manpower?",
+        "answer": "Focus on critical tasks that drive business growth and delegate non-essential tasks."
+    },
+    {
+        "questionNumber": "33",
+        "category": "Entrepreneur",
+        "question": "How do you adapt to changes in market conditions or industry trends as an entrepreneur?",
+        "answer": "Stay informed through market research and pivot business strategies accordingly."
+    },
+    {
+        "questionNumber": "34",
+        "category": "Entrepreneur",
+        "question": "How do you handle a pivot or change in business direction?",
+        "answer": "Communicate the reasons for the pivot transparently and involve employees in the decision-making process."
+    },
+    {
+        "questionNumber": "35",
+        "category": "Entrepreneur",
+        "question": "How do you respond to feedback from early adopters or beta testers of your product?",
+        "answer": "Listen attentively to understand their needs and incorporate feedback to improve the product."
+    },
+    {
+        "questionNumber": "36",
+        "category": "Entrepreneur",
+        "question": "How do you handle unexpected challenges or setbacks while building your business?",
+        "answer": "Adapt quickly and view challenges as opportunities for growth."
+    }
+]
