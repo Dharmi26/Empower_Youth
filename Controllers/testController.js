@@ -98,9 +98,10 @@ const getTestController = async (req, res) => {
         let questions = [];
         for (const allQuestion of test.questions) {
             const questionNumber = allQuestion.questionNumber;
+            const category = allQuestion.category;
             const question = allQuestion.question;
             const answer = allQuestion.answer;
-            questions.push({ questionNumber, question, answer });
+            questions.push({ questionNumber, category, question, answer });
         }
         res.status(200).send({
             success: true,
@@ -172,8 +173,9 @@ const addQuestionsToExistingTestController = async (req, res) => {
         for (const currentQuestion of questions) {
             const question = currentQuestion.question;
             const answer = currentQuestion.answer;
+            const category = currentQuestion.category;
             const questionNumber = currentQuestion.questionNumber;
-            questionsToBeInserted.push({ questionNumber, question, answer });
+            questionsToBeInserted.push({ questionNumber, category, question, answer });
         }
 
         await Test.findByIdAndUpdate({ _id: testId }, {
