@@ -24,6 +24,8 @@ router.post('/add' , allowedToAdmin , addCourseController);
 	@API : Public
 	@method : get
 */
-router.get('/courses' , isAuth , getAllCoursesController);
+// router.get('/courses' , isAuth , getAllCoursesController);
+
+router.get('/courses' , getAllCoursesController);
 
 module.exports = router;

@@ -24,6 +24,7 @@ const registerController = async (req , res) => {
 			user : newUser
 		});
 	} catch (error) {
+		console.log(error);
 		return res.status(501).send({
 			success : false,
 			message : 'Error in registerController Public API',
